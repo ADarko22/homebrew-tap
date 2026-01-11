@@ -8,9 +8,13 @@ class Jdkcerts < Formula
 
   depends_on "openjdk@21"
 
+  # It tells Homebrew to always skip the bottle search and install from the URL.
+  def pour_bottle?
+    false
+  end
+
   def install
-    # 1. Move the JAR to libexec (internal library folder)
-    # We rename it to a clean name without version strings
+    # 1. Move the JAR to libexec (internal library folder) and renames it to a clean name
     libexec.install Dir["JDKCertsTool-*.jar"].first => "jdkcertstool.jar"
 
     # 2. Create the executable wrapper
