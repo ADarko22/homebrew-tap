@@ -1,0 +1,34 @@
+name: Update Formula
+
+on:
+  repository_dispatch:
+    types: [ release-formula ]
+  workflow_dispatch:
+    inputs:
+      formula_name:
+        description: 'Formula name (e.g., jdkcerts)'
+        required: true
+      version:
+        description: 'Version (e.g., v1.0.0)'
+        required: true
+      artifact_name:
+        description: 'Name of the jar in the release'
+        required: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update Formula
+        uses: mislav/bump-homebrew-formula-action@v3
+        with:
+          formula-name: ${{ github.event.client_payload.formula_name || github.event.inputs.formula_name }}
+          tag-name: ${{ github.event.client_payload.version || github.event.inputs.version }}
+          download-url: "https://github.com/ADarko22/JDKCertsTool/releases/download/${{ github.event.client_payload.version || github.event.inputs.version }}/${{ github.event.client_payload.artifact_name || github.event.inputs.artifact_name }}"
+          homebrew-tap: ADarko22/homebrew-tap
+          push-to: ADarko22/homebrew-tap
+          base-branch: main
+        env:
+          COMMITTER_TOKEN: ${{ secrets.TAP_GITHUB_TOKEN }}
