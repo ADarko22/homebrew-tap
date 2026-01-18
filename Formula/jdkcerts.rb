@@ -1,8 +1,8 @@
 class Jdkcerts < Formula
   desc "Tool to manage JDK certificates"
   homepage "https://github.com/ADarko22/JDKCertsTool"
-  url "https://github.com/ADarko22/JDKCertsTool/releases/download/v2.0.0/JDKCertsTool-v2.0.0.jar"
-  sha256 "6c2b4f22b1ac1c4c76785d255daafc160c8d0cbc63368dad927952beeec48241"
+  url "https://github.com/ADarko22/JDKCertsTool/releases/download/v2.0.1/JDKCertsTool-v2.0.1.jar"
+  sha256 "149f0c20d5767c46cade34777e257465670b19ea698f2c54b2659cf803b83996"
   license "MIT"
 
   depends_on "openjdk@21"
