@@ -12,8 +12,8 @@ class Jdkcerts < Formula
   end
 
   def install
-    # 1. Move the jar to libexec
-    libexec.install "JDKCertsTool-v2.0.0.jar" => "jdkcertstool.jar"
+    # 1. Move the jar to libexec: https://github.com/yugabyte/linuxbrew/blob/master/Library/Homebrew/formula.rb#L428
+    libexec.install cached_download => "jdkcertstool.jar"
 
     # 2. Create the script.
       bin.write_jar_script(
